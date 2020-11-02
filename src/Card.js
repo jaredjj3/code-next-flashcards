@@ -54,7 +54,7 @@ export const Card = props => {
           </button>
         </div>
       </div>
-      <div class="card-footer text-muted">
+      <div className="card-footer text-muted">
         {isFrontVisible ? "front" : "back"}
       </div>
     </div>
