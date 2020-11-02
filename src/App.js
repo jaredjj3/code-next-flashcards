@@ -6,7 +6,7 @@ import { Progress } from "./Progress";
 
 export const App = () => {
   return (
-    <div>
+    <div className="container">
       <h1>Flashcards</h1>
       <Decks />
       <Progress />

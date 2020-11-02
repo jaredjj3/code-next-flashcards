@@ -1,6 +1,6 @@
 [
   {
-    "name": "React Deck",
+    "name": "React",
     "cards": [
       {
         "front": "How do parent components talk to child components?",
