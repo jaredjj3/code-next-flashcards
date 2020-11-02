@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Decks } from "./Decks";
 import { Card } from "./Card";
 import { Results } from "./Results";
@@ -20,35 +20,52 @@ export const App = () => {
     setResults([]);
   };
 
-  const onResetClick = () => {
-    setDeck(DEFAULT_DECK);
-    setNdx(0);
-    setResults([]);
+  const goToNextCard = () => {
+    const nextNdx = Math.min(ndx + 1, deck.cards.length - 1);
+    setNdx(nextNdx);
+  };
+
+  const onEasyClick = card => {
+    const nextResults = results.map(result => ({ ...result }));
+    nextResults.push({ type: "easy", card });
+    setResults(nextResults);
+    goToNextCard();
+  };
+
+  const onHardClick = card => {
+    const nextResults = results.map(result => ({ ...result }));
+    nextResults.push({ type: "hard", card });
+    setResults(nextResults);
+    goToNextCard();
   };
 
   return (
     <div className="container">
       <h1>Flashcards</h1>
 
-      <Decks deck={deck} onDeckClick={onDeckClick} />
+      <Decks onDeckClick={onDeckClick} />
 
       <hr />
 
-      <Progress />
+      {!isFinished && (
+        <>
+          <Progress fraction={results.length / deck.cards.length} />
 
-      <br />
+          <br />
+          <Card
+            card={deck.cards[ndx]}
+            onEasyClick={onEasyClick}
+            onHardClick={onHardClick}
+          />
+        </>
+      )}
 
-      <Card card={deck.cards[ndx]} />
-
-      <br />
-      <button
-        className="btn btn-outline-danger btn-block"
-        onClick={onResetClick}
-      >
-        reset
-      </button>
-
-      {isFinished && <Results />}
+      {isFinished && (
+        <>
+          <br />
+          <Results />
+        </>
+      )}
     </div>
   );
 };

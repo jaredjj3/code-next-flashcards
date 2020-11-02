@@ -6,7 +6,7 @@ export const Progress = props => {
       <div
         className="progress-bar"
         role="progressbar"
-        style={{ width: "25%" }}
+        style={{ width: `${props.fraction * 100}%` }}
       />
     </div>
   );
