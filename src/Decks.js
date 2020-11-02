@@ -1,5 +1,7 @@
 import React from "react";
-import DECKS from "./data/DECKS.json";
+import * as DeckAPI from "./data/DeckAPI";
+
+const DECKS = DeckAPI.getAllDecks();
 
 export const Decks = props => {
   const onClick = deck => () => {

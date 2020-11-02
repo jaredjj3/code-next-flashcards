@@ -8,17 +8,21 @@ export const App = () => {
   const [deck, setDeck] = useState(null);
   const [cardNdx, setCardNdx] = useState(null);
 
-  const onDeckClick = (deck) => {
+  const onDeckClick = deck => {
     setDeck(deck);
+    setCardNdx(0);
   };
 
   return (
     <div className="container">
       <h1>Flashcards</h1>
+
       <Decks deck={deck} onDeckClick={onDeckClick} />
+
       <hr />
-      <Progress />
+
       <Card />
+      <Progress />
       <Results />
     </div>
   );
