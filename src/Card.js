@@ -1,19 +1,34 @@
-import React from "react";
+import React, { useState } from "react";
 
 export const Card = props => {
+  const [isFrontVisible, setFrontVisibility] = useState(true);
+
+  const onFlipClick = () => {
+    setFrontVisibility(!isFrontVisible);
+  };
+
   return (
     <div className="card text-center">
-      <div className="card-header">Featured</div>
       <div className="card-body">
-        <h5 className="card-title">Special title treatment</h5>
-        <p className="card-text">
-          With supporting text below as a natural lead-in to additional content.
-        </p>
-        <a href="#" className="btn btn-primary">
-          Go somewhere
-        </a>
+        <h5 className="card-title">
+          {isFrontVisible ? props.card.front : props.card.back}
+        </h5>
+        <button className="btn btn-outline-secondary btn-block" onClick={onFlipClick}>
+          flip
+        </button>
+        {!isFrontVisible && (
+          <>
+            <br />
+            <div className="btn-group btn-block" role="group">
+              <button className="btn btn-danger">hard</button>
+              <button className="btn btn-success">easy</button>
+            </div>
+          </>
+        )}
       </div>
-      <div className="card-footer text-muted">2 days ago</div>
+      <div class="card-footer text-muted">
+        {isFrontVisible ? "front" : "back"}
+      </div>
     </div>
   );
 };

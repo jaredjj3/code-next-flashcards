@@ -3,15 +3,16 @@ import { Decks } from "./Decks";
 import { Card } from "./Card";
 import { Results } from "./Results";
 import { Progress } from "./Progress";
+import * as DeckAPI from "./data/DeckAPI";
+
+const DEFAULT_DECK = DeckAPI.getAllDecks()[0];
 
 export const App = () => {
-  const [deck, setDeck] = useState(null);
-  const [ndx, setNdx] = useState(null);
-  const [results, setResults] = useState(null);
+  const [deck, setDeck] = useState(DEFAULT_DECK);
+  const [ndx, setNdx] = useState(0);
+  const [results, setResults] = useState([]);
 
-  const isStarted = deck !== null;
-  const isFinished =
-    isStarted && results !== null && results.length === deck.cards.length;
+  const isFinished = results.length === deck.cards.length;
 
   const onDeckClick = deck => {
     setDeck(deck);
@@ -20,9 +21,9 @@ export const App = () => {
   };
 
   const onResetClick = () => {
-    setDeck(null);
-    setNdx(null);
-    setResults(null);
+    setDeck(DEFAULT_DECK);
+    setNdx(0);
+    setResults([]);
   };
 
   return (
@@ -33,26 +34,19 @@ export const App = () => {
 
       <hr />
 
-      {isStarted && <Card card={deck.cards[ndx]} />}
+      <Progress />
 
-      {isStarted && (
-        <>
-          <br />
-          <Progress />
-        </>
-      )}
+      <br />
 
-      {isStarted && (
-        <>
-          <br />
-          <button
-            className="btn btn-outline-danger btn-block"
-            onClick={onResetClick}
-          >
-            reset
-          </button>
-        </>
-      )}
+      <Card card={deck.cards[ndx]} />
+
+      <br />
+      <button
+        className="btn btn-outline-danger btn-block"
+        onClick={onResetClick}
+      >
+        reset
+      </button>
 
       {isFinished && <Results />}
     </div>
