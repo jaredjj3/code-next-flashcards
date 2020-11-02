@@ -1,3 +1,9 @@
-# code-next-flashcards
+# Code Next - Flashcards
 
-[Edit on StackBlitz ⚡️](https://stackblitz.com/edit/code-next-flashcards)
+[Fork on StackBlitz ⚡️](https://stackblitz.com/fork/code-next-flashcards)
+
+This is a lesson for the [Code Next](https://codenext.withgoogle.com/) React club.
+
+In this lesson, engineers will
+
+- practice React fundamentals by making a simple flashcard app
