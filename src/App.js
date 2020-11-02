@@ -63,7 +63,7 @@ export const App = () => {
       {isFinished && (
         <>
           <br />
-          <Results />
+          <Results results={results} />
         </>
       )}
     </div>
