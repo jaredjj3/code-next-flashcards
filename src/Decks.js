@@ -20,7 +20,7 @@ export const Decks = props => {
         return (
           <li key={deck.name} className="nav-item">
             <a className={className} href="#" onClick={onClick(deck)}>
-              {deck.name}
+              {deck.name} ({deck.cards.length})
             </a>
           </li>
         );
